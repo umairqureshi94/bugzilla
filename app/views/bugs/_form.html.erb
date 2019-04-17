@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add Bug</title>
+
+</head>
+<body>
+
+	<%= form_with(model: [ @project, @project.bugs.build ], :html => {:multipart => true } , local: true) do |form| %>
+
+	<% if @bug.errors.any? %> <!-- checking if bug has any errors -->
+  
+  	<h2>Errors: </h2>
+  
+  		<ul>
+    		<% @bug.errors.full_messages.each do |message| %> <!-- looping on errors,  -->
+    		<li><%= message %></li> <!-- printing each error seperately -->
+    		<% end %>
+  		</ul> 
+  	<%end%>
+
+	<p>
+		<%= form.label :title %>
+		<%= form.text_field :title %>
+	</p>
+
+	<p>
+		<%= form.label :description %>
+		<%= form.text_area :description%>
+	</p>
+
+	<p>
+		<%= form.label :type %>
+		<%= form.select(:b_type, ['BUG', 'FEATURE']) %>
+	</p>
+
+	<div id="bug_status">
+	<p>
+		<%= form.label :status %>
+		<%= form.select(:status , ['NEW', 'STARTED', 'RESOLVED']) %>
+	</p>
+	</div>
+
+	<div id="feature_status" , style="display:none">
+	<p>
+		<%= form.label :status %>
+		<%= form.select(:status , ['NEW', 'STARTED', 'COMPLETED'])%>
+	</p>
+	</div>
+
+
+	</p>
+
+	<p>
+		<%= form.label :deadline %>
+		<%= form.date_field :deadline %>
+	</p>
+
+	<p>
+		<%= form.file_field :image %>
+	</p>
+
+	<p>
+		<%= form.submit %>
+	</p>
+
+	<%end%>
+
+</body>
+
+
+
+</html>

@@ -1,0 +1,40 @@
+<tr>
+
+	<td> <%= bug.title %> </td>
+	<td> <%= bug.description %></td>
+	<td> <%= bug.b_type %></td>
+	<td> <%= bug.deadline %></td>
+	<td> <%= bug.status %></td>
+	<td> <%= image_tag bug.image_url(:thumb).to_s %></td>
+		
+		<% if bug.users.count == 0 && current_user.role != "dev"%>
+		
+			<td><strong> NONE </strong></td>
+			<td><strong> N/A </strong></td>
+		
+		<%else if bug.users.count !=0 %>
+		
+			<% if current_user.id == bug.users.first.id && bug.status == "STARTED"%>
+			
+				<td><strong>ASSIGNED TO ME</strong></td>
+				<td><%= bug.users.first.email %></td>
+				<td><%= link_to 'Resolve', resolved_project_bug_path(project_id: bug.project.id, bug_id: bug.id)%></td>
+			
+			<%else if current_user.id == bug.users.first.id && (bug.status == "COMPLETED" || bug.status == "RESOLVED") %>	
+				<td><strong>ASSIGNED TO ME</strong></td>
+				<td><%= bug.users.first.email %></td>
+			
+			<% else %>
+				<td> <%= bug.users.first.name.upcase %> </td> 
+				<td> <%= bug.users.first.email %></td>
+			
+			<% end %>
+			<% end %>
+		
+		<% else %>
+			<td><strong> <%= link_to 'Assign',  assign_project_bug_path(project_id: bug.project.id ,bug_id: bug.id) if policy(bug).assign? %></strong></td>
+			<td> </td>
+		<%end%>
+		<%end%>
+
+</tr>

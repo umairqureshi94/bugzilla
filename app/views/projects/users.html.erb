@@ -1,0 +1,54 @@
+<h1> Add Users in <%= @project.title.upcase %> </h1>
+
+<% users = User.all.order("role") %>
+
+<table>
+	
+	<tr>
+		<th>Name</th>
+		<th>Role</th>
+		<th>Email</th>
+		<th>Status</th>
+		<th></th>
+	</tr>
+
+	<% users.each do |u| %>
+	
+	<% if u.role == "manager" || u.role == "user" %>
+
+	<% else %>
+
+	<tr>
+		<td> <%= u.name %> </td>
+		<td> <%= u.role.upcase %> </td>
+		<td> <%= u.email %> </td>
+
+			<% if @project.users.find_by(id: u.id) %>
+			
+				<td> Added </td>
+				<td> <%= link_to 'Remove', project_remove_path(@project, user_id: u.id), method: :delete%></td>
+
+			<% else %>
+			
+				<td> Not Added </td>
+				<td><%= link_to 'Add',  project_add_path(@project, user_id: u.id), method: :put %> </td>
+
+			<% end %>
+
+
+		</td>
+	
+	</tr>
+	
+	<% end %>
+
+	<% end %>
+</table>
+
+
+
+
+	
+		
+
+

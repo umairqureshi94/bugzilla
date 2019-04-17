@@ -1,0 +1,25 @@
+<%= form_for @project do |f| %>
+
+  <% if @project.errors.any? %> <!-- checking if current post has any errors -->
+  
+  <h2>Errors: </h2>
+  
+  <ul>
+    <% @project.errors.full_messages.each do |message| %> <!-- looping on errors,  -->
+    <li><%= message %></li> <!-- printing each error seperately -->
+    <% end %>
+  </ul> 
+  
+  <% end %>
+  <p>
+  <%= f.label :title %>
+  <%= f.text_field :title %><br>
+
+  <br>
+  <%= f.label :description %>
+  <%= f.text_area :description %> <br>
+  <br>
+  <%= f.submit %>
+  </p>
+
+<% end %>

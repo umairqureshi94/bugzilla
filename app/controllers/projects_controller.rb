@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
 before_action :authenticate_user!
+before_action :find_project , only: [:edit, :update, :show, :destroy]
 before_action :set_project, only: [:add, :remove]
 
 
@@ -11,7 +12,6 @@ before_action :set_project, only: [:add, :remove]
 	def new
 		
 		@project = current_user.projects.build
-		
 		authorize @project
 		
 	end
@@ -20,7 +20,6 @@ before_action :set_project, only: [:add, :remove]
 		
 		@project = Project.create(project_params)
 		authorize @project
-		
 		@project.users << current_user
 		
 		if @project.save
@@ -32,14 +31,12 @@ before_action :set_project, only: [:add, :remove]
 	end
 
 	def edit
-		@project = Project.find(params[:id])
 		authorize @project
 		
 	end
 
 	def update
 
-		@project = Project.find(params[:id])
 		authorize @project
 		
 		if @project.update(project_params)
@@ -51,17 +48,13 @@ before_action :set_project, only: [:add, :remove]
 	end
 
 	def show
-		@project = Project.find(params[:id])
 		authorize @project
 		
 	end
 
 	def destroy
-		@project  = Project.find(params[:id])
 		authorize @project
-
 		@project.destroy
-
 		redirect_to projects_path
 		
 	end
@@ -75,9 +68,7 @@ before_action :set_project, only: [:add, :remove]
 	def remove
 		authorize @project
 		@user = User.find(params[:user_id])
-
 		@project.users.destroy(@user.id)
-
 		redirect_to project_users_path(@project.id)
 	end
 
@@ -90,6 +81,10 @@ before_action :set_project, only: [:add, :remove]
 
 	private
 	
+	def find_project
+		@project  = Project.find(params[:id])
+	end
+
 	def set_project
 		@project = Project.find(params[:project_id])
 	end

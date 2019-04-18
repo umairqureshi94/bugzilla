@@ -1,5 +1,6 @@
 class BugsController < ApplicationController
 before_action :authenticate_user!
+before_action :find_project, only: [:new , :create, :destroy]
 
 	def index
 		@bugs = Bug.all.order("id ASC")
@@ -8,29 +9,26 @@ before_action :authenticate_user!
 
 
   def new
-    @project = Project.find(params[:project_id])
     @bug = Bug.new
     authorize @bug
   end
 
   def create
     
-  	@project = Project.find(params[:project_id])
   	@bug = @project.bugs.create(bug_params)
-
+    authorize @bug
     if @bug.errors.any?
       render 'new'  
     else
       redirect_to project_path(@project)
     end
-     authorize @bug
+    
+    
     
   end
 
   def destroy
   	authorize @bug
-
-  	@project = Project.find(params[:project_id])
   	@bug = @project.bugs.find(params[:id])
   	@bug.destroy
 
@@ -49,7 +47,7 @@ before_action :authenticate_user!
   end
 
   def resolved
-    puts 'here' * 1000
+   
     @bug = Bug.find(params[:bug_id])
     authorize @bug
     
@@ -65,9 +63,13 @@ before_action :authenticate_user!
 
 
   private
+
+  def find_project
+    @project = Project.find(params[:project_id])
+  end
+
   def bug_params
   	params.require(:bug).permit(:title, :description, :deadline, :b_type, :status, :image)
-  	
   end
 
 

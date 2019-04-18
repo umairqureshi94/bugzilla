@@ -57,6 +57,9 @@ GEM
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 1.14.3, < 2)
       sassc-rails (>= 2.0.0)
+    bootstrap-sass (3.4.1)
+      autoprefixer-rails (>= 5.2.1)
+      sassc (>= 2.0.0)
     builder (3.2.3)
     byebug (11.0.1)
     capybara (3.16.2)
@@ -245,6 +248,7 @@ DEPENDENCIES
   autoprefixer-rails (~> 9.5, >= 9.5.1)
   bootsnap (>= 1.1.0)
   bootstrap (~> 4.3, >= 4.3.1)
+  bootstrap-sass (~> 3.4.1)
   byebug
   capybara (>= 2.15)
   carrierwave
@@ -264,6 +268,7 @@ DEPENDENCIES
   rails (~> 5.2.3)
   rmagick (~> 2.13.1)
   sass-rails (~> 5.0)
+  sassc-rails (>= 2.1.0)
   selenium-webdriver
   spring
   spring-watcher-listen (~> 2.0.0)

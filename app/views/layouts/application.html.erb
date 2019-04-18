@@ -16,7 +16,7 @@
       <div class="navbar">
         <% if current_user %>
          <!-- <div class= "notice-message"><%= notice %></div> -->
-         <%= link_to '<button type="button"> Home </button>'.html_safe, projects_path  %> 
+         <%= link_to 'Home', projects_path , :class=>'btn btn-primary' %> 
           <div class = "welcome">
             <strong>Welcome: </strong> <%= current_user.name.upcase %>
             <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>

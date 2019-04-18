@@ -1,18 +1,6 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+@import "/*";
+@import "bootstrap-sprockets";
+@import "bootstrap";
 
  body
  {
@@ -23,7 +11,22 @@
 
 .contact-form {
 	width: 85%;
-	max-width:600px;
+	max-width: 600px;
+	background: #f1f1f1;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50% , -50%);
+	padding: 30px 40px;
+	box-sizing: border-box;
+	border-radius: 8px;
+	box-shadow: 0 0 20px #000000b3;
+	font-family: "Montserret", sans-sherif;
+}
+
+.project-all {
+	width: 90%;
+	max-width:900px;
 	background: #f1f1f1;
 	position: absolute;
 	top: 50%;
@@ -35,6 +38,16 @@
 	box-shadow: 0 0 20px #000000b3;
 	font-family: "Montserret", sans-sherif;
 }
+
+.project-all h1{
+	text-align: center;
+}
+
+.btn-new-project{
+	text-align: right;
+}
+
+
 
 .navbar{
 	margin: 0px;
@@ -58,20 +71,7 @@
 	color: white;
 }
 
-.project-all {
-	width: 85%;
-	max-width:600px;
-	background: #f1f1f1;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50% , -50%);
-	padding: 30px 40px;
-	box-sizing: border-box;
-	border-radius: 8px;
-	box-shadow: 0 0 20px #000000b3;
-	font-family: "Montserret", sans-sherif;
-}
+
 .welcome {
 	text-align: right;
 	color: white;
@@ -86,7 +86,7 @@
 }
 
 .txtb label{
-	display: block;
+	
 	text-align: left;
 	color: #333;
 	font-size: 20px;

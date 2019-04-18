@@ -17,7 +17,7 @@
                   <td><%= project.id %></td>
                   <td><%= project.title %></td>
                   <td><%= project.description %></td>
-                  <td><%= link_to 'Show' , project if policy(project).show? %></td>
+                  <td><%= link_to 'Show', project if policy(project).show? %></td>
                   <td><%= link_to 'Edit' , edit_project_path(project) if policy(project).edit? %></td>
                   <td><%= link_to 'Delete' ,project_path(project), method: :delete, data: {confirm: 'Are you Sure?'}  if policy(project).destroy? %></td>
                 </tr>

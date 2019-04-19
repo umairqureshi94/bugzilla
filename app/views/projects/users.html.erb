@@ -1,15 +1,16 @@
-<h1> Add Users in <%= @project.title.upcase %> </h1>
+<div class="project-all">
+<h1> DEV's and QA's of Project <strong>"<%= @project.title.upcase %>"</strong> </h1>
 
 <% users = User.all.order("role") %>
 
-<table>
+<table class="table table-bordered table-hover">
 	
 	<tr>
-		<th>Name</th>
-		<th>Role</th>
-		<th>Email</th>
-		<th>Status</th>
-		<th></th>
+		<th>NAME</th>
+		<th>ROLE</th>
+		<th>EMAIL</th>
+		<th>STATUS</th>
+		<th>Add / Remove</th>
 	</tr>
 
 	<% users.each do |u| %>
@@ -26,12 +27,12 @@
 			<% if @project.users.find_by(id: u.id) %>
 			
 				<td> Added </td>
-				<td> <%= link_to 'Remove', project_remove_path(@project, user_id: u.id), method: :delete%></td>
+				<td> <%= link_to 'Remove', project_remove_path(@project, user_id: u.id), class: "btn btn-danger", method: :delete%></td>
 
 			<% else %>
 			
-				<td> Not Added </td>
-				<td><%= link_to 'Add',  project_add_path(@project, user_id: u.id), method: :put %> </td>
+				<td> <strong> NOT ADDED </strong> </td>
+				<td><%= link_to 'Add',  project_add_path(@project, user_id: u.id), class: "btn btn-success", method: :put %> </td>
 
 			<% end %>
 
@@ -44,7 +45,7 @@
 
 	<% end %>
 </table>
-
+</div>
 
 
 

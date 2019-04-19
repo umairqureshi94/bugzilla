@@ -16,10 +16,10 @@
 
   <body>
     <% if current_user %>
-    <nav class="navbar navbar-inverse">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
-    <div class="navbar-header">
-      <div class="navbar-brand">BUGZILLA</div>
+    <div class="navbar-header navbar-fixed">
+      <div class="navbar-brand"> BUGZILLA </div>
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><%= link_to 'Home', projects_path %></li>
@@ -32,11 +32,8 @@
       <!-- <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li> -->
     </ul>
   </div>
-</nav>
-
-           
-    
-    <strong>Logged in as <%=current_user.role.upcase %></strong>
+</nav>    
+   <!--  <strong>Logged in as <%=current_user.role.upcase %></strong> -->
     <% end %>
     <%= yield %>
   </body>

@@ -1,16 +1,18 @@
-<div class= "project-all">
-   <%if policy(Project).new? %>
-   <div class = "btn-new-project">
-    <%= link_to 'New Project', new_project_path, :class=>'btn btn-primary' %>
-  <% end %></div>
+<div class = "container">
+<div class = "project-all" >
+  <div class = "btn-new-project">
+    <%= link_to 'New Project', new_project_path, class: "btn btn-primary" if policy(Project).new? %>
+</div>
 
 <h1>List of Projects</h1>
 
-    <table>
+    <table class="table table-sm">
       <tr>
       	<th>Project ID</th>
         <th>Title</th>
         <th>Description</th>
+        <th> </th>
+        <th> Actions </th>
         <th> </th>
       </tr>
         
@@ -18,14 +20,15 @@
       
       <%if current_user.role == "dev" %>
         <% if current_user.projects.find_by_id(project.id) %>
+
                 
                 <tr>
                   <td><%= project.id %></td>
                   <td><%= project.title %></td>
                   <td><%= project.description %></td>
-                  <td><%= link_to 'Show', project if policy(project).show? :class=> 'btn btn-primary' %></td>
-                  <td><%= link_to 'Edit' , edit_project_path(project) if policy(project).edit? %></td>
-                  <td><%= link_to 'Delete' ,project_path(project), method: :delete, data: {confirm: 'Are you Sure?'}  if policy(project).destroy? %></td>
+                  <td></td>
+                  <td><%= link_to 'Show', project, class: "btn btn-primary" if policy(project).show? %></td>
+                  <td></td>
                 </tr>
           <% end %>
 
@@ -35,9 +38,9 @@
               <td><%= project.id %></td>
               <td><%= project.title %></td>
               <td><%= project.description %></td>
-              <td><%= link_to 'Show' , project if policy(project).show? %></td>
-              <td><%= link_to 'Edit' , edit_project_path(project) if policy(project).edit? %></td>
-              <td><%= link_to 'Delete' ,project_path(project), method: :delete, data: {confirm: 'Are you Sure?'}  if policy(project).destroy? %></td>
+               <td><%= link_to 'Edit' , edit_project_path(project), class: "btn btn-info" if policy(project).edit? %></td>
+              <td><%= link_to 'Show' , project ,class: "btn btn-primary" if policy(project).show? %></td>
+              <td><%= link_to 'Delete' ,project_path(project), class: "btn btn-danger", method: :delete, data: {confirm: 'Are you Sure?'}  if policy(project).destroy? %></td>
             </tr>  
        <% end %>
       
@@ -47,5 +50,5 @@
     </table>
   
   <br>
-
+</div>
 </div>

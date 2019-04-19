@@ -19,5 +19,5 @@ Rails.application.routes.draw do
 
   end
 
-  root 'projects#index'
+  root 'home#index'
 end

@@ -1,10 +1,5 @@
 class BugPolicy < ApplicationPolicy
 
-
-	def index?
-		true
-	end
-
 	def new?
 		user.qa? || user.user?
 	end

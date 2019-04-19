@@ -24,8 +24,10 @@
       <td><%= link_to 'Project Users' , project_users_path(@project), class: "btn btn-success" if policy(Project).users? %></td>
     </tr>
 </table>
+</div>
 
 <% if @project.bugs.count > 0 %>
+<div class = "project-all">
 
 <h2>Features & Bugs List</h2>
 <table class= "table table-hover">

@@ -5,7 +5,12 @@
   
     <%= csp_meta_tag %>
     <%= csrf_meta_tags %>
+<style type="text/css">
+  .btn {
+    width: 100px;
+  }
 
+</style>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <meta charset="utf-8">
@@ -16,25 +21,36 @@
 
   <body>
     <% if current_user %>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
-    <div class="navbar-header navbar-fixed">
-      <div class="navbar-brand"> BUGZILLA </div>
-    </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><%= link_to 'Home', projects_path %></li>
-      <li><a href="#">Page 1</a></li>
-      <li><a href="#">Page 2</a></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Welcome: <%= current_user.name.upcase %></a></li>
-      <li class= "active"><%= link_to 'Sign Out', destroy_user_session_path ,method: :delete %></li>
-      <!-- <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li> -->
-    </ul>
-  </div>
-</nav>    
-   <!--  <strong>Logged in as <%=current_user.role.upcase %></strong> -->
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+          <div class="navbar-header navbar-fixed">
+            <div class="navbar-brand"> BUGZILLA </div>
+          </div>
+          <ul class="nav navbar-nav">
+            <li class="active"><%= link_to 'Home', projects_path %></li>
+            <li><a href="#">Page 1</a></li>
+            <li><a href="#">Page 2</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Welcome: <%= current_user.name.upcase %></a></li>
+            <li class= "active"><%= link_to 'Sign Out', destroy_user_session_path ,method: :delete %></li>
+            <!-- <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li> -->
+          </ul>
+        </div>
+      </nav> 
     <% end %>
-    <%= yield %>
+    <div class="container mt-60">
+      <% flash.each do |key, value| %>
+       <div class="<%= flash_class(key) %>">
+         <%= value %>
+         <%= javascript_tag "$('.alert').fadeOut(6000);" %>
+       </div>
+      <% end %>
+
+      <%= yield %>
+      </br>
+      </br>
+    </div>
+
   </body>
 </html>

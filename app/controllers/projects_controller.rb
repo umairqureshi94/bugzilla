@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
 before_action :authenticate_user!
-before_action :find_project , only: [:edit, :update, :show, :destroy]
-before_action :set_project, only: [:add, :remove]
+before_action :find_project_and_authorize , only: [:edit, :update, :show, :destroy]
+before_action :set_project_and_authorize_project, only: [:add, :remove, :users]
 
 
 	def index
@@ -60,7 +60,6 @@ before_action :set_project, only: [:add, :remove]
 	end
 
 	def users
-		@project  = Project.find(params[:project_id])
 		authorize @project
 	end
 
@@ -78,15 +77,14 @@ before_action :set_project, only: [:add, :remove]
 		redirect_to project_users_path(@project.id)
 	end
 
-
-	private
-	
-	def find_project
+	def find_project_and_authorize
 		@project  = Project.find(params[:id])
+		authorize @project
 	end
 
-	def set_project
+	def set_project_and_authorize_project
 		@project = Project.find(params[:project_id])
+		authorize @project
 	end
 	
 	def project_params

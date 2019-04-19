@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
 	  protect_from_forgery
 	rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
-	after_action :verify_authorized, unless: :devise_controller?
 
 	before_action :configure_permitted_parameters, if: :devise_controller?
 

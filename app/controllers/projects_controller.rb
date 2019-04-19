@@ -5,8 +5,8 @@ before_action :set_project_and_authorize_project, only: [:add, :remove, :users]
 
 
 	def index
-		@projects = Project.all.order("id ASC")
-		authorize @projects
+		@projects = current_user.projects
+
 	end
 
 	def new

@@ -37,7 +37,7 @@ end
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.serve_static_assets = true
-  config.assets.compile = false
+  config.assets.compile = true
 
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 

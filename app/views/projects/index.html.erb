@@ -18,35 +18,30 @@
         
       <% @projects.each do |project| %>
       
-      <%if current_user.role == "dev" %>
-        <% if current_user.projects.find_by_id(project.id) %>
-
-                
-                <tr>
-                  <td><%= project.id %></td>
-                  <td><%= project.title %></td>
-                  <td><%= project.description %></td>
-                  <td></td>
-                  <td><%= link_to 'Show', project, class: "btn btn-primary" if policy(project).show? %></td>
-                  <td></td>
-                </tr>
-          <% end %>
-
-
-      <% else %>
+        <%if current_user.role == 'dev' %>
+          <% if current_user.projects.find_by_id(project.id) %>                  
             <tr>
               <td><%= project.id %></td>
               <td><%= project.title %></td>
               <td><%= project.description %></td>
-               <td><%= link_to 'Edit' , edit_project_path(project), class: "btn btn-info" if policy(project).edit? %></td>
-              <td><%= link_to 'Show' , project ,class: "btn btn-primary" if policy(project).show? %></td>
-              <td><%= link_to 'Delete' ,project_path(project), class: "btn btn-danger", method: :delete, data: {confirm: 'Are you Sure?'}  if policy(project).destroy? %></td>
-            </tr>  
+              <td></td>
+              <td><%= link_to 'Show', project, class: "btn btn-primary" if policy(project).show? %></td>
+              <td></td>
+            </tr>
+          <% end %>
+            
+        <% else %>
+              <tr>
+                <td><%= project.id %></td>
+                <td><%= project.title %></td>
+                <td><%= project.description %></td>
+                 <td><%= link_to 'Edit' , edit_project_path(project), class: "btn btn-info" if policy(project).edit? %></td>
+                <td><%= link_to 'Show' , project ,class: "btn btn-primary" if policy(project).show? %></td>
+                <td><%= link_to 'Delete' ,project_path(project), class: "btn btn-danger", method: :delete, data: {confirm: 'Are you Sure?'}  if policy(project).destroy? %></td>
+              </tr>  
+         <% end %>
        <% end %>
-      
-      <% end %>
    
-
     </table>
   
   <br>

@@ -1,12 +1,11 @@
 class ProjectsController < ApplicationController
-before_action :authenticate_user!
 before_action :find_project_and_authorize , only: [:edit, :update, :show, :destroy]
 before_action :set_project_and_authorize_project, only: [:add, :remove, :users]
 
 
 	def index
-		@projects = current_user.projects
-
+		@projects = Project.all
+		authorize @projects
 	end
 
 	def new

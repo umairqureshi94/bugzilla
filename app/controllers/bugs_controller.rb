@@ -1,5 +1,4 @@
 class BugsController < ApplicationController
-before_action :authenticate_user!
 before_action :set_and_authorize_resource, only: [:assign, :resolved]
 before_action :find_project, only: [:new , :create]
 

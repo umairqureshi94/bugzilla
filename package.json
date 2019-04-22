@@ -1,5 +1,7 @@
 {
   "name": "bugzilla",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "pg": "^7.10.0"
+  }
 }

@@ -10,6 +10,7 @@ if ENV["RAILS_LOG_TO_STDOUT"].present?
   config.logger = ActiveSupport::TaggedLogging.new(logger)
 end
   # Code is not reloaded between requests.
+
   config.cache_classes = true
 
   # Eager load code on boot. This eager loads most of Rails and
@@ -35,6 +36,7 @@ end
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
+  config.serve_static_assets = true
   config.assets.compile = false
 
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb

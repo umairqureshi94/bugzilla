@@ -71,5 +71,5 @@ gem 'bootstrap', '~> 4.3', '>= 4.3.1'
 gem 'execjs'
 gem 'jquery', '~> 0.0.1'
 gem 'autoprefixer-rails', '~> 9.5', '>= 9.5.1'
-gem 'mini_racer'
 gem 'jquery-rails'
+gem 'rails_12factor', group: :production
